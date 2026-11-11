@@ -1,17 +1,25 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import type { RouteRecordRaw } from 'vue-router';
 
-import HomePage from '../views/HomePage.vue';
+import TabsPage from '../views/TabsPage.vue';
+import BmiPage from '../views/BmiPage.vue';
+import MorsePage from '../views/MorsePage.vue';
+import AlcoholPage from '../views/AlcoholPage.vue';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/tabs/bmi',
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: HomePage,
+    path: '/tabs/',
+    component: TabsPage,
+    children: [
+      { path: '', redirect: '/tabs/bmi' },
+      { path: 'bmi', component: BmiPage },
+      { path: 'morse', component: MorsePage },
+      { path: 'alcohol', component: AlcoholPage },
+    ],
   },
 ];
 
